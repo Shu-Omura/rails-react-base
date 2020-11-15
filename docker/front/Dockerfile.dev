@@ -1,0 +1,11 @@
+FROM node:10.23-alpine
+
+ENV LANG C.UTF-8
+ENV TZ Asia/Tokyo
+ENV ROOT /app
+
+WORKDIR $ROOT
+COPY . $ROOT
+
+RUN yarn
+RUN ln -sf /usr/share/zoneinfo/$TZ /etc/localtime

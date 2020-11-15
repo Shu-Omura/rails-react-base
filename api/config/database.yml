@@ -1,0 +1,21 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV['RAILS_MAX_THREADS'] || 5 %>
+  host: <%= ENV['MYSQL_HOST'] || 'db' %>
+  username: <%= ENV['MYSQL_USER'] || 'root' %>
+  password: <%= ENV['MYSQL_PASSWORD'] || 'password' %>
+
+development:
+  <<: *default
+  database: rails-react-shy_development
+
+test:
+  <<: *default
+  database: rails-react-shy_test
+
+production:
+  <<: *default
+  database: rails-react-shy_production
+  username: rails-react-shy
+  password: <%= ENV['RAILS-REACT-SHY_DATABASE_PASSWORD'] %>

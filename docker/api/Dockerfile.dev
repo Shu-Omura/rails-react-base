@@ -1,0 +1,36 @@
+FROM ruby:alpine3.12
+
+ENV LANG C.UTF-8
+ENV TZ Asia/Tokyo
+ENV ROOT /app
+
+WORKDIR $ROOT
+
+RUN apk update \
+    && apk upgrade \
+    && apk add --virtual=.build-dependencies \
+       bash \
+       build-base \
+       curl-dev \
+       git \
+       libxml2-dev \
+       libxslt-dev \
+       linux-headers \
+       mariadb-dev \
+       openssh \
+       tzdata \
+       vim \
+       wget \
+       yaml-dev \
+    && apk add imagemagick \
+    && rm -rf /var/cache/apk/*
+
+RUN ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
+
+COPY Gemfile Gemfile.lock $ROOT/
+
+RUN gem install bundler \
+    && bundle install \
+      --jobs 8
+
+COPY . $ROOT

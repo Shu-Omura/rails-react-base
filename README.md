@@ -88,7 +88,6 @@ docker-compose run --rm web bash -c "cd api && bundle config set path 'vendor/bu
 7. Create database
 ```sh
 docker-compose run --rm web bash -c "cd api && bundle exec rails db:create"
-# docker-compose run --rm web bash -c "cd api && bundle install && bundle exec rails db:create"
 ```
 
 8. Finish!

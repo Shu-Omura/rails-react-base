@@ -24,10 +24,10 @@ module Api
     config.api_only = true
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'http://localhost:3000'
+        origins 'http://localhost:8000'
         resource '*',
-        headers: :any,
-        method: %i(get post patch put delete options)
+                 headers: :any,
+                 method: %i[get post patch put delete options]
       end
     end
   end

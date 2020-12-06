@@ -27,7 +27,7 @@ module Api
         origins 'http://localhost:8000'
         resource '*',
                  headers: :any,
-                 method: %i[get post patch put delete options]
+                 methods: %i[get post patch put delete options head]
       end
     end
   end
